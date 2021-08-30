@@ -10,15 +10,15 @@ A bean may bear metadata defining its lifecycle and interactions with other bean
 
 A bean comprises the following attributes:
 
-* A (nonempty) set of bean types
-* A (nonempty) set of qualifiers
-* A scope
-* Optionally, a bean name
-* A set of interceptor bindings
-* A bean implementation
+* specref:a[A (nonempty) set of bean types]
+* specref:b[A (nonempty) set of qualifiers]
+* specref:c[A scope]
+* specref:e[Optionally, a bean name]
+* specref:f[A set of interceptor bindings]
+* specref:g[A bean implementation]
 
 
-Furthermore, a bean may or may not be an alternative.
+Furthermore, specref:h[a bean may or may not be an alternative].
 
 A bean developer provides the bean implementation by writing business logic in Java code.
 The developer then defines the remaining attributes by explicitly annotating the bean class, or by allowing them to be defaulted by the container, as specified in <<implementation>>.
@@ -81,19 +81,17 @@ The bean types of a bean are used by the rules of typesafe resolution defined in
 
 Almost any Java type may be a bean type of a bean:
 
-* A bean type may be an interface, a concrete class or an abstract class, and may be declared final or have final methods.
-* A bean type may be a parameterized type with actual type parameters and type variables.
-* A bean type may be an array type.
-Two array types are considered identical only if the element type is identical.
-* A bean type may be a primitive type.
-Primitive types are considered to be identical to their corresponding wrapper types in `java.lang`.
-* A bean type may be a raw type.
+* specref:a[A bean type may be an interface], specref:b[a concrete class] or specref:c[an abstract class], and specref:d[may be declared final] or specref:e[have final methods].
+* specref:f[A bean type may be a parameterized type with actual type parameters] and specref:g[type variables].
+* specref:i[A bean type may be an array type. Two array types are considered identical only if the element type is identical.]
+* specref:j[A bean type may be a primitive type. Primitive types are considered to be identical to their corresponding wrapper types in `java.lang`.]
+* specref:k[A bean type may be a raw type.]
 
 However, some Java types are not legal bean types :
 
-* A type variable is not a legal bean type.
-* A parameterized type that contains a wildcard type parameter is not a legal bean type.
-* An array type whose component type is not a legal bean type.
+* specref:la[A type variable is not a legal bean type.]
+* specref:lb[A parameterized type that contains a wildcard type parameter is not a legal bean type.]
+* specref:lc[An array type whose component type is not a legal bean type.]
 
 Note that certain additional restrictions are specified in <<unproxyable>> for beans with a normal scope, as defined in <<normal_scope>>.
 
