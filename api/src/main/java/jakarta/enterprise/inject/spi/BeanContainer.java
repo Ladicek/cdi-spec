@@ -251,4 +251,40 @@ public interface BeanContainer {
      * @since 2.0
      */
     Instance<Object> createInstance();
+
+    /**
+     * Facilitates programmatic access to observer method resolution rules (assignability rules).
+     * Verifies if an observer method represented by its types and qualifiers would get
+     * notified for an event with provided type and qualifiers.
+     * <p>
+     * Users are expected to supply all qualifiers, including implied ones such as {@code @Default}.
+     * <p>
+     * Throws {@link IllegalArgumentException} if any of the arguments is {@code null}.
+     *
+     * @param observedType Represents the observed type
+     * @param observedQualifiers Represents observed qualifiers
+     * @param eventPayloadType Event payload type
+     * @param qualifiers Event qualifiers
+     * @return true if observer method with supplied type and qualifiers would be notified for given payload type
+     * and qualifiers; false otherwise
+     */
+    boolean isMatchingObserverMethod(Type observedType, Set<Annotation> observedQualifiers, Type eventPayloadType, Annotation... qualifiers);
+
+    /**
+     * Facilitates programmatic access to typesafe resolution rules (assignability rules).
+     * Verifies if a bean represented by its types and qualifiers matches an injection
+     * point based on required {@code injectionPointType} and {@code qualifiers}.
+     * <p>
+     * Users are expected to supply all qualifiers, including implied ones such as {@code @Default}.
+     * <p>
+     * Throws {@link IllegalArgumentException} if any of the arguments is {@code null}.
+     *
+     * @param beanTypes Represent set of types of a bean
+     * @param beanQualifiers Represents set of qualifiers of a bean
+     * @param injectionPointType Type of injection point
+     * @param qualifiers Injection point qualifiers
+     * @return true if a bean with supplied types and qualifiers is assignable to an injection point of given
+     * type and qualifiers; false otherwise
+     */
+    boolean isMatchingBean(Set<Type> beanTypes, Set<Annotation> beanQualifiers, Type injectionPointType, Annotation... qualifiers);
 }
