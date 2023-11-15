@@ -253,38 +253,42 @@ public interface BeanContainer {
     Instance<Object> createInstance();
 
     /**
-     * Facilitates programmatic access to observer method resolution rules (assignability rules).
-     * Verifies if an observer method represented by its types and qualifiers would get
-     * notified for an event with provided type and qualifiers.
+     * Returns whether a bean with given bean types and qualifiers would be assignable
+     * to an injection point with given required type and required qualifiers.
+     * In other words, this method provides fine-grained access to the assignability
+     * and qualifiers related part of the typesafe resolution rules defined by the CDI specification.
      * <p>
-     * Users are expected to supply all qualifiers, including implied ones such as {@code @Default}.
+     * Callers must supply all qualifiers, including implied ones such as {@code @Default}
+     * or {@code Any}.
      * <p>
      * Throws {@link IllegalArgumentException} if any of the arguments is {@code null}.
      *
-     * @param observedType Represents the observed type
-     * @param observedQualifiers Represents observed qualifiers
-     * @param eventPayloadType Event payload type
-     * @param qualifiers Event qualifiers
-     * @return true if observer method with supplied type and qualifiers would be notified for given payload type
-     * and qualifiers; false otherwise
+     * @param beanTypes bean types of a bean; must not be {@code null}
+     * @param beanQualifiers qualifiers of a bean; must not be {@code null}
+     * @param requiredType required type of an injection point; must not be {@code null}
+     * @param requiredQualifiers required qualifiers of an injection point; must not be {@code null}
+     * @return whether a bean with given bean types and qualifiers would be assignable
+     * to an injection point with given required type and required qualifiers
      */
-    boolean isMatchingObserverMethod(Type observedType, Set<Annotation> observedQualifiers, Type eventPayloadType, Annotation... qualifiers);
+    boolean isMatchingBean(Set<Type> beanTypes, Set<Annotation> beanQualifiers, Type requiredType, Set<Annotation> requiredQualifiers);
 
     /**
-     * Facilitates programmatic access to typesafe resolution rules (assignability rules).
-     * Verifies if a bean represented by its types and qualifiers matches an injection
-     * point based on required {@code injectionPointType} and {@code qualifiers}.
+     * Returns whether an event object with given type and qualifiers would match
+     * an observer method with given observed event type and observed event qualifiers.
+     * In other words, this method provides fine-grained access to the assignability
+     * and qualifiers related part of the observer resolution rules defined by the CDI specification.
      * <p>
-     * Users are expected to supply all qualifiers, including implied ones such as {@code @Default}.
+     * Callers must supply all qualifiers, including implied ones such as {@code @Default}
+     * or {@code Any}.
      * <p>
      * Throws {@link IllegalArgumentException} if any of the arguments is {@code null}.
      *
-     * @param beanTypes Represent set of types of a bean
-     * @param beanQualifiers Represents set of qualifiers of a bean
-     * @param injectionPointType Type of injection point
-     * @param qualifiers Injection point qualifiers
-     * @return true if a bean with supplied types and qualifiers is assignable to an injection point of given
-     * type and qualifiers; false otherwise
+     * @param eventType type of an event object; must not be {@code null}
+     * @param eventQualifiers event qualifiers; must not be {@code null}
+     * @param observedEventType observed event type of an observer method; must not be {@code null}
+     * @param observedEventQualifiers observed event qualifiers on an observer method; must not be {@code null}
+     * @return whether an event object with given type and qualifiers would result in notifying
+     * an observer method with given observed event type and observed event qualifiers
      */
-    boolean isMatchingBean(Set<Type> beanTypes, Set<Annotation> beanQualifiers, Type injectionPointType, Annotation... qualifiers);
+    boolean isMatchingEvent(Type eventType, Set<Annotation> eventQualifiers, Type observedEventType, Set<Annotation> observedEventQualifiers);
 }
