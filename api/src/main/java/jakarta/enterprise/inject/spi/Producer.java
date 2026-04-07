@@ -36,13 +36,14 @@ public interface Producer<T> {
      * Causes an instance to be produced via the {@code Producer}.
      * </p>
      * <p>
-     * If the {@code Producer} represents a class, this will invoke the constructor annotated {@link jakarta.inject.Inject} if
-     * it exists, or the constructor with no parameters otherwise. If the class has interceptors, <code>produce()</code> is
-     * responsible for building the interceptors and decorators of the instance.
+     * If the {@code Producer} represents a managed bean, this will invoke the constructor annotated
+     * {@link jakarta.inject.Inject} if it exists, or the constructor with no parameters otherwise.
+     * If the bean has interceptors or decorators, {@code produce()} is responsible for building
+     * the interceptors and decorators of the instance.
      * </p>
      * <p>
-     * If the {@code Producer} represents a producer field or method, this will invoke the producer method on, or access the
-     * producer field of, a contextual instance of the bean that declares the producer.
+     * If the {@code Producer} represents a producer field or method, this will invoke the producer method on,
+     * or access the producer field of, a contextual instance of the bean that declares the producer.
      * </p>
      *
      * @param ctx The {@link CreationalContext} to use for the produced object
@@ -55,7 +56,7 @@ public interface Producer<T> {
      * Destroys the instance.
      * </p>
      * <p>
-     * If the {@code Producer} represents a class, then this operation does only one thing:
+     * If the {@code Producer} represents a managed bean, then this operation does only one thing:
      * if the bean is auto-closeable and the class of the contextual instance implements {@link AutoCloseable},
      * {@code close()} is called on the instance.
      * </p>
@@ -72,8 +73,8 @@ public interface Producer<T> {
 
     /**
      * <p>
-     * Returns the set of all {@code InjectionPoint}s. If the {@code Producer} represents a class, then this returns the
-     * set of {@code InjectionPoint} objects representing all injected fields, bean constructor parameters and initializer
+     * Returns the set of all {@code InjectionPoint}s. If the {@code Producer} represents a managed bean, then this returns
+     * the set of {@code InjectionPoint} objects representing all injected fields, bean constructor parameters and initializer
      * method parameters. For a producer method, this returns the set of {@code InjectionPoint} objects representing all
      * parameters of the producer method. For a producer field, this returns an empty set.
      * </p>
