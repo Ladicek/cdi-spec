@@ -83,6 +83,9 @@ All beans have the bean type `java.lang.Object`.
 
 The bean types of a bean are used by the rules of typesafe resolution defined in <<typesafe_resolution>>.
 
+Certain built-in beans defined by this specification have an infinite set of bean types.
+User-defined beans always have a finite set of bean types.
+
 [[legal_bean_types]]
 
 ==== Legal bean types
@@ -224,6 +227,9 @@ An injection point may even specify multiple qualifiers.
 Qualifier types are also used as event selectors by event consumers, as defined in <<events>>.
 
 In {cdi_full} environment, qualifier types are also used to bind decorators to beans, as specified in <<decorators>>.
+
+Certain built-in beans defined by this specification have an infinite set of qualifiers.
+User-defined beans always have a finite set of qualifiers.
 
 [[builtin_qualifiers]]
 

@@ -196,7 +196,7 @@ If the runtime type of the event object is assignable to the type of a container
 The container must provide a built-in bean with:
 
 * `Event<X>` in its set of bean types, for every Java type `X` that does not contain a type variable,
-* every event qualifier type in its set of qualifier types,
+* all possible qualifiers in its set of qualifiers,
 * scope `@Dependent`,
 * no bean name, and
 * an implementation provided automatically by the container.

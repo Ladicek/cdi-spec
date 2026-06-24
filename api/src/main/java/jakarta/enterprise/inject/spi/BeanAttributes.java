@@ -16,6 +16,7 @@ package jakarta.enterprise.inject.spi;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
+import java.util.Collection;
 import java.util.Set;
 
 import jakarta.enterprise.inject.Alternative;
@@ -33,6 +34,10 @@ public interface BeanAttributes<T> {
 
     /**
      * Obtains the {@linkplain jakarta.enterprise.inject bean types} of the bean.
+     * <p>
+     * If the set of bean types of the bean is infinite, only the {@link Set#contains(Object)}
+     * and {@link Set#containsAll(Collection)} methods may be called on the result;
+     * calling the other {@code Set} methods leads to non-portable behavior.
      *
      * @return the {@linkplain jakarta.enterprise.inject bean types}
      */
@@ -40,6 +45,10 @@ public interface BeanAttributes<T> {
 
     /**
      * Obtains the {@linkplain jakarta.inject.Qualifier qualifiers} of the bean.
+     * <p>
+     * If the set of qualifiers of the bean is infinite, only the {@link Set#contains(Object)}
+     * and {@link Set#containsAll(Collection)} methods may be called on the result;
+     * calling the other {@code Set} methods leads to non-portable behavior.
      *
      * @return the {@linkplain jakarta.inject.Qualifier qualifiers}
      */

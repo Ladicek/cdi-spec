@@ -41,6 +41,7 @@ public interface BeanAttributes<T> {
 ----
 
 * `getTypes()`, `getQualifiers()`, `getScope()`, `getName()` and `getStereotypes()` must return the bean types, qualifiers, scope type, bean name and stereotypes of the bean, as defined in <<concepts>>.
+If the set of bean types or qualifiers is infinite, only the `contains()` and `containsAll()` methods may be called on the result of `getTypes()` or `getQualifiers()`; calling the other `Set` methods leads to non-portable behavior.
 * `isAlternative()` must return `true` if the bean is an alternative, and `false` otherwise.
 * `isReserve()` must return `true` if the bean is a reserve, and `false` otherwise.
 * `isEager()` must return `true` if the bean is eagerly initialized, and `false` otherwise.

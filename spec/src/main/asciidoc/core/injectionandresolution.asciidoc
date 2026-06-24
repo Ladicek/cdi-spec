@@ -797,7 +797,7 @@ The `close()` method delegates to the aforementioned `destroy()` method.
 The container must provide a built-in bean with:
 
 * `Instance<X>` and `Provider<X>` for every legal bean type `X` in its set of bean types,
-* every qualifier type in its set of qualifier types,
+* all possible qualifiers in its set of qualifiers,
 * scope `@Dependent`,
 * no bean name, and
 * an implementation provided automatically by the container.
